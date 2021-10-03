@@ -1,3 +1,5 @@
+import { injectable } from 'tsyringe';
+
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
 
 interface ICreateSpecificationRequest {
@@ -5,8 +7,12 @@ interface ICreateSpecificationRequest {
   name: string;
 }
 
+@injectable()
 export class CreateSpecificationUseCase {
-  constructor(private specificationsRepository: ISpecificationsRepository) {}
+  constructor(
+    @inject('SpecificationsRepository')
+    private specificationsRepository: ISpecificationsRepository,
+  ) {}
 
   execute({ description, name }: ICreateSpecificationRequest): void {
     const specificationAlreadyExist =
