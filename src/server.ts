@@ -2,6 +2,7 @@ import express from 'express';
 import swagger from 'swagger-ui-express';
 import 'reflect-metadata';
 import './database';
+import './shared/container';
 
 import { routes } from './routes';
 import swagerConfig from './swagger.json';
