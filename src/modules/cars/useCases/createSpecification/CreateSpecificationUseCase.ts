@@ -1,4 +1,4 @@
-import { injectable } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
 
