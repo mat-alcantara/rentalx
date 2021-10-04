@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
+import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository';
+
 interface IPayload {
   sub: string;
 }
@@ -19,9 +21,15 @@ export const ensureAuthenticated = async (
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub } = verify(token, 'mateus') as IPayload;
+    const { sub: user_id } = verify(token, 'mateus') as IPayload;
 
-    request.user = sub;
+    const usersRepository = new UsersRepository();
+
+    const user = usersRepository.findById(user_id);
+
+    if (!user) {
+      throw new Error('User does not exists');
+    }
 
     return next();
   } catch {
