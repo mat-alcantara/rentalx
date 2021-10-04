@@ -18,7 +18,7 @@ interface IAuthenticateUserResponse {
 }
 
 @injectable()
-export class AuthenticateUserUseService {
+export class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
