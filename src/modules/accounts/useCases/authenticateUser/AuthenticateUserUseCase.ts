@@ -45,8 +45,14 @@ export class AuthenticateUserUseCase {
       expiresIn: '1d',
     });
 
-    delete user.password;
+    const tokenReturn = {
+      token,
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+    };
 
-    return { user, token };
+    return tokenReturn;
   }
 }
