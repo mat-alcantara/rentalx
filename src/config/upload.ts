@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import crypto from 'crypto';
 import multer from 'multer';
 import { resolve } from 'path';
