@@ -24,6 +24,7 @@ describe('Create Category', () => {
     );
 
     expect(categoryCreated).toHaveProperty('id');
+    expect(categoryCreated).toMatchObject(category);
   });
 
   it('returns error when creating two categories with same name', async () => {
