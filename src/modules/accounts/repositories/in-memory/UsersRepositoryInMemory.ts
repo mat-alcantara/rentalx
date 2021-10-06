@@ -11,7 +11,6 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     name,
     password,
     avatar,
-    id,
   }: ICreateUsersDTO): Promise<void> {
     const user = new User();
 
@@ -21,7 +20,6 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name,
       password,
       avatar,
-      id,
     });
 
     this.users.push(user);
