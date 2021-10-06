@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import swagger from 'swagger-ui-express';
 import 'reflect-metadata';
 import './database';
-import './shared/container';
+import '@shared/container';
 import 'express-async-errors';
 
 import { routes } from './routes';
