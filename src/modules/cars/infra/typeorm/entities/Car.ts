@@ -25,6 +25,9 @@ export class Car {
   brand: string;
 
   @Column()
+  available: boolean;
+
+  @Column()
   category_id: string;
 
   @CreateDateColumn()
@@ -33,6 +36,8 @@ export class Car {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.available = true;
+      this.created_at = new Date();
     }
   }
 }
