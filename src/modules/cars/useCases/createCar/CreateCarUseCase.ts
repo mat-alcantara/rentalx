@@ -18,15 +18,15 @@ export class CreateCarUseCase {
     daily_rate,
     description,
     fine_amount,
-    license_place,
+    license_plate,
     name,
   }: ICreateCarDTO): Promise<Car> {
     const carAlreadyExist = await this.carsRepository.findByLicensePlate(
-      license_place,
+      license_plate,
     );
 
     if (carAlreadyExist) {
-      throw new AppError('Car already exist');
+      throw new AppError('Car already exists!');
     }
 
     const car = await this.carsRepository.create({
@@ -35,7 +35,7 @@ export class CreateCarUseCase {
       daily_rate,
       description,
       fine_amount,
-      license_place,
+      license_plate,
       name,
     });
 

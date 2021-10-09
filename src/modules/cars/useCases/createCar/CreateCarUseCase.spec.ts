@@ -13,39 +13,41 @@ describe('Create Car', () => {
   });
 
   it('should be able to create a new car', async () => {
-    await createCarUseCase.execute({
+    const car = await createCarUseCase.execute({
       brand: 'brand',
       category_id: 'id',
       daily_rate: 2121,
       description: 'flkdaf',
       fine_amount: 323,
-      license_place: 'fsdklj',
+      license_plate: 'fsdklj',
       name: 'dfjksdlf',
     });
+
+    expect(car).toHaveProperty('id');
   });
 
-  it('should not be able to create a car with an existent license place', async () => {
-    expect(async () => {
-      createCarUseCase.execute({
-        brand: 'brand',
-        category_id: 'id',
-        daily_rate: 2121,
-        description: 'flkdaf',
-        fine_amount: 323,
-        license_place: 'fsdklj',
-        name: 'Car 1',
-      });
+  it('should not be able to create a car with exists license plate', async () => {
+    await createCarUseCase.execute({
+      name: 'Car1',
+      description: 'Description Car',
+      daily_rate: 100,
+      license_plate: 'ABC-1234',
+      fine_amount: 60,
+      brand: 'Brand',
+      category_id: 'category',
+    });
 
+    await expect(
       createCarUseCase.execute({
-        brand: 'brand',
-        category_id: 'id',
-        daily_rate: 2121,
-        description: 'flkdaf',
-        fine_amount: 323,
-        license_place: 'fsdklj',
-        name: 'Car 2',
-      });
-    }).rejects.toBeInstanceOf(AppError);
+        name: 'Car2',
+        description: 'Description Car',
+        daily_rate: 100,
+        license_plate: 'ABC-1234',
+        fine_amount: 60,
+        brand: 'Brand',
+        category_id: 'category',
+      }),
+    ).rejects.toEqual(new AppError('Car already exists!'));
   });
 
   it('should not be able to create an available car by default', async () => {
@@ -55,7 +57,7 @@ describe('Create Car', () => {
       daily_rate: 2121,
       description: 'flkdaf',
       fine_amount: 323,
-      license_place: 'fsdklj',
+      license_plate: 'fsdklj',
       name: 'Car 1',
     });
 

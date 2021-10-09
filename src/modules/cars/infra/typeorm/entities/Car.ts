@@ -16,7 +16,7 @@ export class Car {
   daily_rate: number;
 
   @Column()
-  license_place: string;
+  license_plate: string;
 
   @Column()
   fine_amount: number;
