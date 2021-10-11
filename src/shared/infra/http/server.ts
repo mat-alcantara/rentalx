@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import express, { Request, Response, NextFunction } from 'express';
 import swagger from 'swagger-ui-express';
+
 import 'reflect-metadata';
-import '@shared/infra/typeorm';
 import '@shared/container';
 import 'express-async-errors';
 
 import { AppError } from '@shared/errors/AppError';
+import createConnection from '@shared/infra/typeorm';
 
 import swagerConfig from '../../../swagger.json';
 import { routes } from './routes';
 
 const app = express();
+
+createConnection();
 
 app.use(express.json());
 
