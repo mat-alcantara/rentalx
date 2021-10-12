@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { ensureAdmin } from '../middlewares/ensureAdmin';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { authenticateRoutes } from './authenticate.routes';
 import { carsRoutes } from './cars.routes';
@@ -13,6 +14,7 @@ routes.use('/users', usersRoutes);
 routes.use('/sessions', authenticateRoutes);
 
 routes.use(ensureAuthenticated);
+routes.use(ensureAdmin);
 
 routes.use('/categories', categoriesRoutes);
 routes.use('/specifications', specificationsRoutes);
