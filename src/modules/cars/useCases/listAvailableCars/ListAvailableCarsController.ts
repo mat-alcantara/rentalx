@@ -5,16 +5,16 @@ import { ListAvailableCarsUseCase } from './ListAvailableCarsUseCase';
 
 export class ListAvailableCarsController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, brand, category_id } = request.body;
+    const { name, brand, category_id } = request.query;
 
     const listAvailableCarsUseCase = container.resolve(
       ListAvailableCarsUseCase,
     );
 
     const carsAvailable = await listAvailableCarsUseCase.execute({
-      name,
-      brand,
-      category_id,
+      name: name as string,
+      brand: brand as string,
+      category_id: category_id as string,
     });
 
     return response.json(carsAvailable);
