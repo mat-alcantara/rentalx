@@ -13,9 +13,10 @@ export const routes = Router();
 routes.use('/users', usersRoutes);
 routes.use('/sessions', authenticateRoutes);
 
+routes.use('/cars', carsRoutes);
+
 routes.use(ensureAuthenticated);
 routes.use(ensureAdmin);
 
 routes.use('/categories', categoriesRoutes);
 routes.use('/specifications', specificationsRoutes);
-routes.use('/cars', carsRoutes);
