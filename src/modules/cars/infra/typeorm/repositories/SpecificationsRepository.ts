@@ -25,4 +25,8 @@ export class SpecificationsRepository implements ISpecificationsRepository {
 
     await this.repository.save(specification);
   }
+
+  findByIds(ids: string[]): Promise<Specification[]> {
+    throw new Error('Method not implemented.');
+  }
 }

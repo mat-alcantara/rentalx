@@ -20,6 +20,7 @@ export class CarsRepository implements ICarsRepository {
     fine_amount,
     license_plate,
     name,
+    specifications,
   }: ICreateCarDTO): Promise<Car> {
     const car = this.repository.create({
       brand,
@@ -29,6 +30,7 @@ export class CarsRepository implements ICarsRepository {
       fine_amount,
       license_plate,
       name,
+      specifications,
     });
 
     await this.repository.save(car);
