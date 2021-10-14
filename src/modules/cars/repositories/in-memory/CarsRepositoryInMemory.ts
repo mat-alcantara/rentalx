@@ -7,9 +7,7 @@ export class CarsRepositoryInMemory implements ICarsRepository {
   cars: Car[] = [];
 
   async findByLicensePlate(license_plate: string): Promise<Car> {
-    const car = this.cars.find(car => car.license_plate === license_plate);
-
-    return car;
+    return this.cars.find(car => car.license_plate === license_plate);
   }
 
   async create({
@@ -55,5 +53,9 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     }
 
     return carsAvailable;
+  }
+
+  async findById(id: string): Promise<Car> {
+    return this.cars.find(car => car.id === id);
   }
 }
