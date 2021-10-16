@@ -9,7 +9,7 @@ interface IRequest {
 @injectable()
 export class UploadCarImagesUseCase {
   constructor(
-    @inject('CarsImagesRepository')
+    @inject('CarImagesRepository')
     private carsImagesRepository: ICarsImagesRepository,
   ) {}
 
